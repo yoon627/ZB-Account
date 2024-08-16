@@ -1,9 +1,13 @@
+### get account
+GET http://localhost:8080/account?user_id=1
+Accept: application/json
+
 ### create account
 POST http://localhost:8080/account
 Content-Type: application/json
 
 {
-  "userId": 2,
+  "userId": 1,
   "initialBalance": 0
 }
 
