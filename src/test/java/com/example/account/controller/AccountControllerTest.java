@@ -3,6 +3,7 @@ package com.example.account.controller;
 import com.example.account.domain.Account;
 import com.example.account.dto.AccountDto;
 import com.example.account.dto.CreateAccount;
+import com.example.account.dto.DeleteAccount;
 import com.example.account.type.AccountStatus;
 import com.example.account.service.AccountService;
 import com.example.account.service.RedisTestService;
@@ -17,11 +18,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -57,6 +56,29 @@ class AccountControllerTest {
                 .content(objectMapper.writeValueAsString(
                         new CreateAccount.Request(3333L,1111L)
                 )))
+                .andExpect((status().isOk()))
+                .andExpect(jsonPath("$.userId").value(1))
+                .andExpect(jsonPath("$.accountNumber").value("1234567890"))
+                .andDo(print());
+    }
+
+    @Test
+    void successDeleteAccount() throws Exception {
+        //given
+        given(accountService.deleteAccount(anyLong(), anyString()))
+                .willReturn(AccountDto.builder()
+                        .userId(1L)
+                        .accountNumber("1234567890")
+                        .registeredAt(LocalDateTime.now())
+                        .unRegisteredAt(LocalDateTime.now())
+                        .build());
+        //when
+        //then
+        mockMvc.perform(delete("/account")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(
+                                new DeleteAccount.Request(3333L,"0987654321")
+                        )))
                 .andExpect((status().isOk()))
                 .andExpect(jsonPath("$.userId").value(1))
                 .andExpect(jsonPath("$.accountNumber").value("1234567890"))

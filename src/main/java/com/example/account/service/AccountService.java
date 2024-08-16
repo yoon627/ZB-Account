@@ -76,6 +76,9 @@ public class AccountService {
         account.setAccountStatus(UNREGISTERED);
         account.setUnRegisteredAt(LocalDateTime.now());
 
+        //테스트를 위한 코드로 바로 위에서 저장하기 때문에 중복되어 필요없는 코드다.
+        accountRepository.save(account);
+
         return AccountDto.fromEntity(account);
     }
 
