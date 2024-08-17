@@ -17,13 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-public class Transaction {
-    //다른 Entity와 겹치는 부분들을 별도의 class를 생성해서 상속받도록 해줄 수 있다.(ex.id,createdAt,updatedAt)
-    @Id
-    @GeneratedValue
-    private Long id;
-
+public class Transaction extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
     @Enumerated(EnumType.STRING)
@@ -36,9 +30,4 @@ public class Transaction {
 
     private String transactionId;
     private LocalDateTime transactedAt;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
 }
