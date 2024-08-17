@@ -55,7 +55,6 @@ class AccountServiceTest {
                         .accountNumber("1000000015").build());
         ArgumentCaptor<Account> captor = ArgumentCaptor.forClass(Account.class);
 
-
         //when
         AccountDto accountDto = accountService.createAccount(1L, 1000L);
 
@@ -93,7 +92,7 @@ class AccountServiceTest {
 
     @Test
     @DisplayName("해당 유저 없음 - 계좌 생성 실패")
-    void createAccountFailed_userNotFound() {
+    void createAccountFailed_UserNotFound() {
         //given
         given(accountUserRepository.findById(anyLong()))
                 .willReturn(Optional.empty());
@@ -108,7 +107,7 @@ class AccountServiceTest {
 
     @Test
     @DisplayName("유저 당 최대 계좌는 10개")
-    void createAccountFailed_maxAccountIs10() {
+    void createAccountFailed_MaxAccountIs10() {
         //given
         AccountUser user = AccountUser.builder()
                 .id(15L)
@@ -152,7 +151,7 @@ class AccountServiceTest {
 
     @Test
     @DisplayName("해당 유저 없음 - 계좌 해지 실패")
-    void deleteAccountFailed_userNotFound() {
+    void deleteAccountFailed_UserNotFound() {
         //given
         given(accountUserRepository.findById(anyLong()))
                 .willReturn(Optional.empty());
@@ -167,7 +166,7 @@ class AccountServiceTest {
 
     @Test
     @DisplayName("해당 계좌 없음 - 계좌 해지 실패")
-    void deleteAccountFailed_accountNotFound() {
+    void deleteAccountFailed_AccountNotFound() {
         //given
         AccountUser user = AccountUser.builder()
                 .id(12L)
@@ -186,8 +185,8 @@ class AccountServiceTest {
     }
 
     @Test
-    @DisplayName("계좌 소유주 다름")
-    void deleteAccountFailed_userUnMatch() {
+    @DisplayName("계좌 소유주 다름 - 계좌 삭제 실패")
+    void deleteAccountFailed_UserUnMatch() {
         //given
         AccountUser pobi = AccountUser.builder()
                 .id(12L)
@@ -213,7 +212,7 @@ class AccountServiceTest {
 
     @Test
     @DisplayName("해지 계좌는 잔액이 없어야 한다.")
-    void deleteAccountFailed_balanceNotEmpty() {
+    void deleteAccountFailed_BalanceNotEmpty() {
         //given
         AccountUser pobi = AccountUser.builder()
                 .id(12L)
@@ -236,7 +235,7 @@ class AccountServiceTest {
 
     @Test
     @DisplayName("해지 계좌는 해지할 수 없다.")
-    void deleteAccountFailed_alreadyUnregistered() {
+    void deleteAccountFailed_AlreadyUnregistered() {
         //given
         AccountUser pobi = AccountUser.builder()
                 .id(12L)
