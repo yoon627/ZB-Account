@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class LockService {
     private final RedissonClient redissonClient;
 
-    public void lock(String accountNumber){
+    public void lock(String accountNumber) {
         RLock lock = redissonClient.getLock(getLockKey(accountNumber));
         log.debug("Trying lock for accountNumber: {}", accountNumber);
 
@@ -26,14 +26,14 @@ public class LockService {
                 log.error("=========Lock acquisition failed=======");
                 throw new AccountException(ErrorCode.ACCOUNT_TRANSACTION_LOCK);
             }
-        }catch (AccountException e){
+        } catch (AccountException e) {
             throw e;
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("Redis lock failed", e);
         }
     }
 
-    public void unlock(String accountNumber){
+    public void unlock(String accountNumber) {
         log.debug("Unlock for accountNumber: {}", accountNumber);
         redissonClient.getLock(getLockKey(accountNumber)).unlock();
     }

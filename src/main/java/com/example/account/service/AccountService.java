@@ -6,7 +6,6 @@ import com.example.account.dto.AccountDto;
 import com.example.account.exception.AccountException;
 import com.example.account.repository.AccountRepository;
 import com.example.account.repository.AccountUserRepository;
-import com.example.account.type.ErrorCode;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,6 @@ import java.util.stream.Collectors;
 import static com.example.account.type.AccountStatus.IN_USE;
 import static com.example.account.type.AccountStatus.UNREGISTERED;
 import static com.example.account.type.ErrorCode.*;
-import static com.example.account.type.ErrorCode.USER_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor

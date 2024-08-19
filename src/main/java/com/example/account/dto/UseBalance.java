@@ -5,7 +5,6 @@ import com.example.account.type.TransactionResultType;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class UseBalance {

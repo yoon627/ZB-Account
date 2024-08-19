@@ -24,13 +24,13 @@ public class LockAopAspect {
 
         // lock 취득 시도
         lockService.lock(request.getAccountNumber());
-        try{
+        try {
             //before, after 에 원하는 동작을
             // 넣어줄 수 있기 때문에 around
             //before
             return pjp.proceed();
             //after
-        }finally {
+        } finally {
             // lock 해제
             lockService.unlock(request.getAccountNumber());
         }

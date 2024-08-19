@@ -28,7 +28,7 @@ public class DeleteAccount {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Response{
+    public static class  Response{
         private Long userId;
         private String accountNumber;
         private LocalDateTime unRegisteredAt;

@@ -1,13 +1,12 @@
 package com.example.account.domain;
 
-import com.example.account.type.AccountStatus;
 import com.example.account.type.TransactionResultType;
 import com.example.account.type.TransactionType;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 

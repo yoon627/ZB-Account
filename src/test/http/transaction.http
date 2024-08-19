@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "userId": 1,
-  "accountNumber":  "1000000000",
+  "accountNumber": "1000000000",
   "amount": 1000
 }
 
@@ -14,7 +14,7 @@ Content-Type: application/json
 
 {
   "userId": 1,
-  "accountNumber":  "1000000000",
+  "accountNumber": "1000000000",
   "amount": 1000
 }
 
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 {
   "transactionId": "d20d8b54ef4b4137af99eb3583387db8",
-  "accountNumber":  "1000000000",
+  "accountNumber": "1000000000",
   "amount": 1000
 }
 

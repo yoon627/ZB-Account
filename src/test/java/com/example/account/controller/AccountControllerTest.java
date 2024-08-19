@@ -5,10 +5,9 @@ import com.example.account.dto.AccountDto;
 import com.example.account.dto.CreateAccount;
 import com.example.account.dto.DeleteAccount;
 import com.example.account.exception.AccountException;
-import com.example.account.type.AccountStatus;
 import com.example.account.service.AccountService;
+import com.example.account.type.AccountStatus;
 import com.example.account.type.ErrorCode;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,8 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -52,10 +52,10 @@ class AccountControllerTest {
         //when
         //then
         mockMvc.perform(post("/account")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(
-                        new CreateAccount.Request(3333L,1111L)
-                )))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(
+                                new CreateAccount.Request(3333L, 1111L)
+                        )))
                 .andExpect((status().isOk()))
                 .andExpect(jsonPath("$.userId").value(1))
                 .andExpect(jsonPath("$.accountNumber").value("1234567890"))
@@ -77,7 +77,7 @@ class AccountControllerTest {
         mockMvc.perform(delete("/account")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(
-                                new DeleteAccount.Request(3333L,"0987654321")
+                                new DeleteAccount.Request(3333L, "0987654321")
                         )))
                 .andExpect((status().isOk()))
                 .andExpect(jsonPath("$.userId").value(1))

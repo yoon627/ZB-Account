@@ -30,12 +30,12 @@ class LockServiceTest {
         //given
         given(redissonClient.getLock(anyString()))
                 .willReturn(rLock);
-        given(rLock.tryLock(anyLong(),anyLong(),any()))
+        given(rLock.tryLock(anyLong(), anyLong(), any()))
                 .willReturn(true);
 
         //when
         //then
-        assertDoesNotThrow(()->lockService.lock("123"));
+        assertDoesNotThrow(() -> lockService.lock("123"));
     }
 
     @Test
@@ -43,7 +43,7 @@ class LockServiceTest {
         //given
         given(redissonClient.getLock(anyString()))
                 .willReturn(rLock);
-        given(rLock.tryLock(anyLong(),anyLong(),any()))
+        given(rLock.tryLock(anyLong(), anyLong(), any()))
                 .willReturn(false);
 
         //when
