@@ -236,7 +236,7 @@ class AccountServiceTest {
 
     @Test
     @DisplayName("해지 계좌는 해지할 수 없다.")
-    void deleteAccountFailed_AlreadyUnregistered() {
+    void deleteAccountFailed_AlreadyUnRegistered() {
         //given
         AccountUser pobi = AccountUser.builder()
                 .name("Pobi").build();
@@ -311,5 +311,29 @@ class AccountServiceTest {
 
         //then
         assertEquals(ErrorCode.USER_NOT_FOUND, exception.getErrorCode());
+    }
+
+    @Test
+    @DisplayName("계좌 생성시 계좌번호 중복 체크")
+    void createAccountFailed_AccountNumberDuplicated() {
+        //given
+        AccountUser user = AccountUser.builder()
+                .name("Pobi").build();
+        user.setId(12L);
+        given(accountUserRepository.findById(anyLong()))
+                .willReturn(Optional.of(user));
+        given(accountRepository.findFirstByOrderByIdDesc())
+                .willReturn(Optional.of(Account.builder()
+                        .accountNumber("1000000000").build()));
+        given(accountRepository.findByAccountNumber(anyString()))
+                .willReturn(Optional.of(Account.builder()
+                        .accountNumber("1000000000").build()));
+
+        //when
+        AccountException exception = assertThrows(AccountException.class,
+                () -> accountService.createAccount(1L, 1000L));
+
+        //then
+        assertEquals(ErrorCode.ACCOUNT_NUMBER_DUPLICATED, exception.getErrorCode());
     }
 }
