@@ -8,6 +8,7 @@ import com.example.account.repository.AccountRepository;
 import com.example.account.repository.AccountUserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ import static com.example.account.type.AccountStatus.IN_USE;
 import static com.example.account.type.AccountStatus.UNREGISTERED;
 import static com.example.account.type.ErrorCode.*;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AccountService {
@@ -40,6 +42,8 @@ public class AccountService {
                 .map(account -> (Integer.parseInt(account.getAccountNumber())) + 1 + "")
                 .orElse("1000000000");
 
+        validateAccountNumberDuplication(newAccountNumber);
+
         return AccountDto.fromEntity(
                 accountRepository.save(Account.builder()
                         .accountUser(accountUser)
@@ -53,6 +57,12 @@ public class AccountService {
     private void validateCreateAccount(AccountUser accountUser) {
         if (accountRepository.countByAccountUser(accountUser) >= 10) {
             throw new AccountException(MAX_ACCOUNT_PER_USER_10);
+        }
+    }
+
+    private void validateAccountNumberDuplication(String newAccountNumber) {
+        if (accountRepository.findByAccountNumber(newAccountNumber).isPresent()) {
+            throw new AccountException(ACCOUNT_NUMBER_DUPLICATED);
         }
     }
 
