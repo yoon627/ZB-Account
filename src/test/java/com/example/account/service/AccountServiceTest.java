@@ -40,6 +40,7 @@ class AccountServiceTest {
     private AccountService accountService;
 
     @Test
+    @DisplayName("계좌 생성 성공 테스트")
     void createAccountSuccess() {
         //given
         AccountUser user = AccountUser.builder()
@@ -66,6 +67,7 @@ class AccountServiceTest {
     }
 
     @Test
+    @DisplayName("첫 계좌 생성 성공 테스트")
     void createFirstAccount() {
         //given
         AccountUser user = AccountUser.builder()
@@ -125,6 +127,7 @@ class AccountServiceTest {
     }
 
     @Test
+    @DisplayName("계좌 해지 성공 테스트")
     void deleteAccountSuccess() {
         //given
         AccountUser user = AccountUser.builder()
@@ -259,6 +262,7 @@ class AccountServiceTest {
     }
 
     @Test
+    @DisplayName("계좌 조회 성공 테스트")
     void successGetAccountsByUserID() {
         //given
         AccountUser pobi = AccountUser.builder()
@@ -300,6 +304,7 @@ class AccountServiceTest {
     }
 
     @Test
+    @DisplayName("계좌 조회 실패 테스트")
     void failedToGetAccount() {
         //given
         given(accountUserRepository.findById(anyLong()))
