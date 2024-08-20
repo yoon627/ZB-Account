@@ -8,7 +8,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-public class DeleteAccount {
+public class DeleteAccountDto {
 
     @Getter
     @Setter

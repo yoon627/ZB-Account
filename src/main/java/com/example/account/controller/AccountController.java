@@ -1,9 +1,9 @@
 package com.example.account.controller;
 
 import com.example.account.domain.Account;
-import com.example.account.dto.AccountInfo;
-import com.example.account.dto.CreateAccount;
-import com.example.account.dto.DeleteAccount;
+import com.example.account.dto.AccountInfoDto;
+import com.example.account.dto.CreateAccountDto;
+import com.example.account.dto.DeleteAccountDto;
 import com.example.account.service.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,31 +18,31 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping("/account")
-    public CreateAccount.Response createAccount(
-            @RequestBody @Valid CreateAccount.Request request) {
+    public CreateAccountDto.Response createAccount(
+            @RequestBody @Valid CreateAccountDto.Request request) {
 
-        return CreateAccount.Response.from(
+        return CreateAccountDto.Response.from(
                 accountService.createAccount(
                         request.getUserId(),
                         request.getInitialBalance()));
     }
 
     @DeleteMapping("/account")
-    public DeleteAccount.Response createAccount(
-            @RequestBody @Valid DeleteAccount.Request request) {
+    public DeleteAccountDto.Response createAccount(
+            @RequestBody @Valid DeleteAccountDto.Request request) {
 
-        return DeleteAccount.Response.from(
+        return DeleteAccountDto.Response.from(
                 accountService.deleteAccount(
                         request.getUserId(),
                         request.getAccountNumber()));
     }
 
     @GetMapping("/account")
-    public List<AccountInfo> getAccountsByUserId(
+    public List<AccountInfoDto> getAccountsByUserId(
             @RequestParam("user_id") Long userId
     ) {
         return accountService.getAccountsByUserId(userId).stream()
-                .map(accountDto -> AccountInfo.builder()
+                .map(accountDto -> AccountInfoDto.builder()
                         .accountNumber(accountDto.getAccountNumber())
                         .balance(accountDto.getBalance())
                         .build())

@@ -7,13 +7,14 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-public class CancelBalance {
+public class UseBalanceDto {
     @Getter
     @Setter
     @AllArgsConstructor
     public static class Request implements AccountLockIdInterface {
-        @NotBlank
-        private String transactionId;
+        @NotNull
+        @Min(1)
+        private Long userId;
 
         @NotBlank
         @Size(min = 10, max = 10)

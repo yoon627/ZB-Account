@@ -6,7 +6,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-public class CreateAccount {
+public class CreateAccountDto {
 
     @Getter
     @Setter

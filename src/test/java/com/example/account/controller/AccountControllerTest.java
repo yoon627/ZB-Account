@@ -2,8 +2,8 @@ package com.example.account.controller;
 
 import com.example.account.domain.Account;
 import com.example.account.dto.AccountDto;
-import com.example.account.dto.CreateAccount;
-import com.example.account.dto.DeleteAccount;
+import com.example.account.dto.CreateAccountDto;
+import com.example.account.dto.DeleteAccountDto;
 import com.example.account.exception.AccountException;
 import com.example.account.service.AccountService;
 import com.example.account.type.AccountStatus;
@@ -54,7 +54,7 @@ class AccountControllerTest {
         mockMvc.perform(post("/account")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(
-                                new CreateAccount.Request(3333L, 1111L)
+                                new CreateAccountDto.Request(3333L, 1111L)
                         )))
                 .andExpect((status().isOk()))
                 .andExpect(jsonPath("$.userId").value(1))
@@ -77,7 +77,7 @@ class AccountControllerTest {
         mockMvc.perform(delete("/account")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(
-                                new DeleteAccount.Request(3333L, "0987654321")
+                                new DeleteAccountDto.Request(3333L, "0987654321")
                         )))
                 .andExpect((status().isOk()))
                 .andExpect(jsonPath("$.userId").value(1))

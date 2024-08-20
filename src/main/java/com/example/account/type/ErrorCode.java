@@ -14,6 +14,7 @@ public enum ErrorCode {
     ACCOUNT_TRANSACTION_LOCK("해당 계좌는 사용 중입니다."),
     TRANSACTION_NOT_FOUND("해당 거래가 없습니다."),
     AMOUNT_EXCEED_BALANCE("거래 금액이 계좌 잔액보다 큽니다."),
+    AMOUNT_OUT_OF_RANGE("거래 금액이 범위를 벗어납니다."),
     USER_ACCOUNT_UN_MATCH("사용자와 계좌의 소유주가 다릅니다."),
     TRANSACTION_ACCOUNT_UN_MATCH("이 거래는 해당 계좌에서 발생한 거래가 아닙니다."),
     CANCEL_MUST_FULLY("부분 취소는 가능하지 않습니다."),

@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AccountInfo {
+public class AccountInfoDto {
     private String accountNumber;
     private Long balance;
 }

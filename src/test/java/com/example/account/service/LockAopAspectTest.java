@@ -1,6 +1,6 @@
 package com.example.account.service;
 
-import com.example.account.dto.UseBalance;
+import com.example.account.dto.UseBalanceDto;
 import com.example.account.exception.AccountException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.junit.jupiter.api.Test;
@@ -35,8 +35,8 @@ class LockAopAspectTest {
                 ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<String> unLockArgumentCaptor =
                 ArgumentCaptor.forClass(String.class);
-        UseBalance.Request request =
-                new UseBalance.Request(123L, "1234", 1000L);
+        UseBalanceDto.Request request =
+                new UseBalanceDto.Request(123L, "1234", 1000L);
 
         //when
         lockAopAspect.aroundMethod(proceedingJoinPoint, request);
@@ -57,8 +57,8 @@ class LockAopAspectTest {
                 ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<String> unLockArgumentCaptor =
                 ArgumentCaptor.forClass(String.class);
-        UseBalance.Request request =
-                new UseBalance.Request(123L, "54321", 1000L);
+        UseBalanceDto.Request request =
+                new UseBalanceDto.Request(123L, "54321", 1000L);
         given(proceedingJoinPoint.proceed())
                 .willThrow(new AccountException(ACCOUNT_NOT_FOUND));
         //when

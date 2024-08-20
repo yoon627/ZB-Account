@@ -1,8 +1,8 @@
 package com.example.account.controller;
 
-import com.example.account.dto.CancelBalance;
+import com.example.account.dto.CancelBalanceDto;
 import com.example.account.dto.TransactionDto;
-import com.example.account.dto.UseBalance;
+import com.example.account.dto.UseBalanceDto;
 import com.example.account.service.TransactionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -52,7 +52,7 @@ class TransactionControllerTest {
         mockMvc.perform(post("/transaction/use")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(
-                                new UseBalance.Request(123L, "2000000000", 333L)
+                                new UseBalanceDto.Request(123L, "2000000000", 333L)
                         ))
                 ).andDo(print())
                 .andExpect(status().isOk())
@@ -78,7 +78,7 @@ class TransactionControllerTest {
         mockMvc.perform(post("/transaction/cancel")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(
-                                new CancelBalance.Request("transactionId", "2000000000", 333L)
+                                new CancelBalanceDto.Request("transactionId", "2000000000", 333L)
                         ))
                 ).andDo(print())
                 .andExpect(status().isOk())
