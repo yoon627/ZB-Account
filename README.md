@@ -1,6 +1,6 @@
 # ZB-Account <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> 
 스프링을 활용한 계좌시스템입니다.  
-H2 데이터베이스를 사용하였고 Redis와 Lock을 이용해 중복거래를 방지했습니다.
+H2 데이터베이스를 사용하였고 Redis와 Lock을 이용해 중복거래를 방지했습니다.  
 계좌 관련 API로 계좌 생성, 해지, 확인을 할 수 있고  
 거래 관련 API로 계좌 잔액 사용, 사용 취소, 거래확인을 할 수 있습니다.  
 
